@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mentor Dashboard - Grow Your Greatness</title>
+    <link rel="stylesheet" href="styles.css">
+    <meta name="description" content="Mentor dashboard for submitting blog posts and managing content.">
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">Grow Your Greatness</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="programs.html">Programs</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li class="dropdown">
+                    <button onclick="toggleDropdown()" class="dropbtn">Mentor Menu &#9662;</button>
+                    <div id="dropdownMenu" class="dropdown-content">
+                        <a href="mentor_dashboard.html">Dashboard</a>
+                        <a href="#" onclick="logout()">Logout</a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <div class="container">
+                <h1>Mentor Dashboard</h1>
+                <p>Share your insights and experiences with our students</p>
+            </div>
+        </section>
+
+        <!-- Success Message -->
+        <div id="successMessage" class="message-box success-message">
+            <h3 style="margin-bottom: 1rem; color: #155724;">Blog Post Submitted!</h3>
+            <p>Your blog post has been submitted for review. It will be published within 24 hours after approval.</p>
+        </div>
+
+        <!-- Error Message -->
+        <div id="errorMessage" class="message-box error-message">
+            <h3 style="margin-bottom: 1rem; color: #721c24;">Submission Error</h3>
+            <p>There was an error submitting your blog post. Please try again or contact support.</p>
+        </div>
+
+        <div class="container">
+            <!-- Dashboard Stats -->
+            <div class="dashboard-stats">
+                <div class="stat-card">
+                    <h3>3</h3>
+                    <p>Published Posts</p>
+                </div>
+                <div class="stat-card">
+                    <h3>1</h3>
+                    <p>Pending Review</p>
+                </div>
+                <div class="stat-card">
+                    <h3>245</h3>
+                    <p>Total Views</p>
+                </div>
+                <div class="stat-card">
+                    <h3>12</h3>
+                    <p>Comments</p>
+                </div>
+            </div>
+
+            <div class="dashboard-content">
+                <!-- Blog Post Form -->
+                <div class="form-container">
+                    <h2>Submit New Blog Post</h2>
+                    <form id="blogPostForm">
+                        <div class="form-group">
+                            <label for="postTitle">Post Title *</label>
+                            <input type="text" id="postTitle" name="postTitle" required placeholder="Enter your blog post title">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="postCategory">Category *</label>
+                            <select id="postCategory" name="postCategory" required>
+                                <option value="">Select a category</option>
+                                <option value="mentorship">Mentorship Tips</option>
+                                <option value="success-stories">Success Stories</option>
+                                <option value="industry-insights">Industry Insights</option>
+                                <option value="career-advice">Career Advice</option>
+                                <option value="technical-tips">Technical Tips</option>
+                                <option value="personal-development">Personal Development</option>
+                            </select>
+                        </div>
+
+                        <div class="grid-2">
+                            <div class="form-group">
+                                <label for="readTime">Estimated Read Time (minutes) *</label>
+                                <input type="number" id="readTime" name="readTime" required min="1" max="30" placeholder="5">
+                            </div>
+                            <div class="form-group">
+                                <label for="postImage">Featured Image URL</label>
+                                <input type="url" id="postImage" name="postImage" placeholder="https://example.com/image.jpg">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="postExcerpt">Post Excerpt/Summary *</label>
+                            <textarea id="postExcerpt" name="postExcerpt" rows="3" required placeholder="Write a brief summary of your post (2-3 sentences that will appear on the blog preview)..."></textarea>
+                            <small style="color: #666;">This will be shown as a preview on the blog page</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="postContent">Post Content *</label>
+                            <div class="editor-toolbar">
+                                <button type="button" onclick="formatText('bold')" title="Bold"><strong>B</strong></button>
+                                <button type="button" onclick="formatText('italic')" title="Italic"><em>I</em></button>
+                                <button type="button" onclick="formatText('insertOrderedList')" title="Numbered List">1.</button>
+                                <button type="button" onclick="formatText('insertUnorderedList')" title="Bullet List">•</button>
+                                <button type="button" onclick="formatText('createLink')" title="Link">🔗</button>
+                            </div>
+                            <div id="postContent" class="rich-editor" contenteditable="true" placeholder="Write your blog post content here...">
+                                <p>Start writing your blog post...</p>
+                            </div>
+                            <small style="color: #666;">Use the toolbar above for formatting. Minimum 300 words recommended.</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="postTags">Tags (comma-separated)</label>
+                            <input type="text" id="postTags" name="postTags" placeholder="mentorship, career advice, electrical work">
+                            <small style="color: #666;">Help students find your content with relevant tags</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="targetAudience">Target Audience</label>
+                            <select id="targetAudience" name="targetAudience">
+                                <option value="">All students</option>
+                                <option value="beginners">Beginners</option>
+                                <option value="intermediate">Intermediate</option>
+                                <option value="advanced">Advanced</option>
+                                <option value="job-seekers">Job Seekers</option>
+                                <option value="entrepreneurs">Future Entrepreneurs</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="allowComments" checked>
+                                <span>Allow student comments on this post</span>
+                            </label>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="featuredPost">
+                                <span>Request to feature this post (subject to admin approval)</span>
+                            </label>
+                        </div>
+
+                        <div class="tip-box">
+                            <h4>Writing Tips</h4>
+                            <ul style="margin-left: 1.5rem; line-height: 1.6;">
+                                <li>Share personal experiences and real examples</li>
+                                <li>Write in a conversational, encouraging tone</li>
+                                <li>Include actionable advice students can apply</li>
+                                <li>Keep paragraphs short for easy reading</li>
+                                <li>Proofread before submitting</li>
+                            </ul>
+                        </div>
+
+                        <button type="submit" class="submit-btn">Submit for Review</button>
+                        <button type="button" class="submit-btn" style="background: #6c757d; margin-left: 1rem;" onclick="saveDraft()">Save as Draft</button>
+                    </form>
+                </div>
+
+                <!-- My Posts Section -->
+                <div class="my-posts-section">
+                    <h2>My Posts</h2>
+                    <div class="posts-list">
+                        <div class="post-item">
+                            <div class="post-info">
+                                <h4>Building Confidence Through Hands-On Learning</h4>
+                                <p>Published 2 days ago • 124 views • 5 comments</p>
+                                <span class="status status-published">Published</span>
+                            </div>
+                            <div class="post-actions">
+                                <button class="btn-edit">Edit</button>
+                                <button class="btn-view">View</button>
+                            </div>
+                        </div>
+
+                        <div class="post-item">
+                            <div class="post-info">
+                                <h4>The Future of Electrical Work</h4>
+                                <p>Submitted 1 day ago</p>
+                                <span class="status status-pending">Pending Review</span>
+                            </div>
+                            <div class="post-actions">
+                                <button class="btn-edit">Edit</button>
+                                <button class="btn-delete">Delete</button>
+                            </div>
+                        </div>
+
+                        <div class="post-item">
+                            <div class="post-info">
+                                <h4>Safety First: Essential Workshop Rules</h4>
+                                <p>Draft saved 3 hours ago</p>
+                                <span class="status status-draft">Draft</span>
+                            </div>
+                            <div class="post-actions">
+                                <button class="btn-edit">Continue</button>
+                                <button class="btn-delete">Delete</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Grow Your Greatness. Empowering youth through mentorship and skill development.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Rich text editor functionality
+        function formatText(command, value = null) {
+            document.execCommand(command, false, value);
+            document.getElementById('postContent').focus();
+        }
+
+        // Handle blog post form submission
+        document.getElementById('blogPostForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const form = e.target;
+            const submitBtn = form.querySelector('button[type="submit"]');
+            
+            // Get content from rich editor
+            const content = document.getElementById('postContent').innerHTML;
+            
+            // Validate content length (minimum 300 words approximation)
+            const wordCount = content.replace(/<[^>]*>/g, '').split(' ').length;
+            if (wordCount < 50) { // Reduced for demo, normally would be 300
+                alert('Please write at least 300 words for your blog post.');
+                return;
+            }
+            
+            hideMessages();
+            
+            // Update button state
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Submitting...';
+            submitBtn.disabled = true;
+            
+            // Simulate submission
+            setTimeout(() => {
+                try {
+                    showMessage('success', 'Your blog post has been submitted for review. It will be published within 24 hours after approval.');
+                    form.reset();
+                    document.getElementById('postContent').innerHTML = '<p>Start writing your blog post...</p>';
+                } catch (error) {
+                    showMessage('error', 'There was an error submitting your blog post. Please try again or contact support.');
+                } finally {
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
+                }
+            }, 1500);
+        });
+
+        // Save draft functionality
+        function saveDraft() {
+            const title = document.getElementById('postTitle').value;
+            if (!title) {
+                alert('Please enter a title before saving as draft.');
+                return;
+            }
+            
+            // In a real application, this would save to a database
+            alert('Draft saved successfully!');
+        }
+
+        // Logout functionality
+        function logout() {
+            if (confirm('Are you sure you want to logout?')) {
+                window.location.href = 'mentor_login.html';
+            }
+        }
+
+        // Post actions
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('btn-edit')) {
+                // Edit post functionality
+                alert('Edit functionality would open the post in the editor');
+            } else if (e.target.classList.contains('btn-view')) {
+                // View post functionality
+                window.open('blog.html', '_blank');
+            } else if (e.target.classList.contains('btn-delete')) {
+                if (confirm('Are you sure you want to delete this post?')) {
+                    e.target.closest('.post-item').remove();
+                }
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Grow Your Greatness</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">    
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <meta name="description" content="Read insights, success stories, and advice from our mentors and program graduates.">
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">Grow Your Greatness</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="programs.html">Programs</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li class="dropdown">
+                    <button onclick="toggleDropdown()" class="dropbtn">Join Us &#9662;</button>
+                    <div id="dropdownMenu" class="dropdown-content">
+                        <a href="registration.html">Student</a>
+                        <a href="mentor_registration.html">Mentor</a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <div class="container">
+                <h1>Mentor Insights & Success Stories</h1>
+                <p>Learn from our community of experienced mentors and successful program graduates</p>
+            </div>
+        </section>
+
+        <!-- Success Message -->
+        <div id="successMessage" class="message-box success-message">
+            <h3 style="margin-bottom: 1rem; color: #155724;">🎉 Subscription Successful!</h3>
+            <p>Thank you for subscribing! You'll receive our latest stories and updates directly to your inbox.</p>
+        </div>
+
+        <!-- Error Message -->
+        <div id="errorMessage" class="message-box error-message">
+            <h3 style="margin-bottom: 1rem; color: #721c24;">⚠ Subscription Error</h3>
+            <p>There was an error with your subscription. Please try again or contact us directly.</p>
+        </div>
+
+<!-- page wrapper -->
+        <div class="page wrapper">
+		
+		<!-- post slider -->
+            <div class="post-slider">
+               <h1 class="slider-title">Trending Posts</h1>
+			   
+			   <i class="far fa-chevron-left prev"></i>
+			   <i class="far fa-chevron-right next"></i>
+			   
+			   <div class="post-wrapper">
+			      <div class="post">1</div>
+				  <div class="post">2</div>
+				  <div class="post">3</div>
+				  <div class="post">4</div>
+				  <div class="post">5</div>
+				  <div class="post">6</div>
+				  
+			   </div>
+                
+            </div>
+
+            <div class="blog-cta">
+                <h2>Want to Share Your Story?</h2>
+                <p>Whether you're a mentor, graduate, or supporter, we'd love to feature your insights and experiences on our blog.</p>
+                <a href="contact.html" class="cta-button">Submit Your Story</a>
+            </div>
+
+            <div class="newsletter-signup">
+                <h3>Stay Updated</h3>
+                <p>Get the latest stories, program updates, and mentorship insights delivered to your inbox.</p>
+                <form id="newsletterForm" class="newsletter-form">
+                    <input type="email" id="newsletterEmail" name="email" placeholder="Enter your email" required>
+                    <button type="submit" class="submit-btn">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Grow Your Greatness. Empowering youth through mentorship and skill development.</p>
+            <p style="margin-top: 0.5rem; font-size: 0.9rem; opacity: 0.8;">
+                <a href="mailto:info@growyourgreatness.org">info@growyourgreatness.org</a> | 
+                <a href="tel:+15551234567">(555) 123-4567</a>
+            </p>
+        </div>
+    </footer>
+<!--slick courasel-->
+    <<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+				
+    <script src="script.js"></script>
+</body>
+</html>

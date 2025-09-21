@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Become a Mentor - Grow Your Greatness</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <meta name="description" content="Join our team of expert mentors and help shape the next generation of skilled professionals.">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">Grow Your Greatness</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="programs.html">Programs</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li class="dropdown">
+                    <button onclick="toggleDropdown()" class="dropbtn">Join Us &#9662;</button>
+                    <div id="dropdownMenu" class="dropdown-content">
+                        <a href="registration.html">Student</a>
+                        <a href="mentor_registration.html">Mentor</a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <div class="container">
+                <h1>Become a Mentor</h1>
+                <p>Share your expertise and help shape the future of skilled trades</p>
+            </div>
+        </section>
+
+        <div class="container">
+            <div style="max-width: 800px; margin: 3rem auto; text-align: center;">
+                <h2 style="color: #333; margin-bottom: 1rem;">Ready to Make a Lasting Impact?</h2>
+                <p style="color: #666; font-size: 1.1rem; line-height: 1.6;">Join our community of mentors who guide others through personal transformation. Share your life experiences and wisdom to help young people develop self-awareness, self-mastery, and discover their inner potential.</p>
+            </div>
+
+            <!-- Success Message -->
+            <div id="successMessage" class="message-box success-message">
+                <h3 style="margin-bottom: 1rem; color: #155724;">🎉 Application Submitted Successfully!</h3>
+                <p>Thank you for your mentor application! We have received it and will review within 5-7 business days. Our HR team will contact you to discuss the next steps.</p>
+            </div>
+
+            <!-- Error Message -->
+            <div id="errorMessage" class="message-box error-message">
+                <h3 style="margin-bottom: 1rem; color: #721c24;">⚠ Submission Error</h3>
+                <p>There was an error submitting your application. Please try again or contact our HR team at <a href="mailto:vimextra12@gmail.com" style="color: #721c24;">vimextra12@gmail.com</a></p>
+            </div>
+
+            <div class="form-container">
+                <form id="mentorRegistrationForm" action="https://formspree.io/f/xgvlrqzq" method="POST" enctype="multipart/form-data">
+                    <!-- Formspree Configuration -->
+                    <input type="hidden" name="_subject" value="New Mentor Application - Grow Your Greatness">
+                    <input type="hidden" name="_next" value="mentor-thank-you.html">
+                    <input type="hidden" name="_captcha" value="false">
+
+                    <div style="background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 1.5rem; border-radius: 10px; margin-bottom: 2rem; text-align: center;">
+                        <h3 style="margin-bottom: 0.5rem;">Mentor Application Form</h3>
+                        <p style="opacity: 0.9; margin: 0;">Help us understand your life experience and mentoring goals</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="fullName">Full Name *</label>
+                        <input type="text" id="fullName" name="fullName" required placeholder="Enter your full name">
+                    </div>
+
+                    <div class="grid-2">
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" name="email" required placeholder="your.email@example.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number *</label>
+                            <input type="tel" id="phone" name="phone" required placeholder="(555) 123-4567">
+                        </div>
+                    </div>
+
+                    <div class="grid-2">
+                        <div class="form-group">
+                            <label for="age">Age</label>
+                            <input type="number" id="age" name="age" min="25" max="75" placeholder="35">
+                        </div>
+                        <div class="form-group">
+                            <label for="city">City/Location *</label>
+                            <input type="text" id="city" name="city" required placeholder="Your city">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="currentRole">Current Profession/Role *</label>
+                        <input type="text" id="currentRole" name="currentRole" required placeholder="e.g., Life Coach, Business Owner, Teacher, etc.">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="company">Current Employer/Business</label>
+                        <input type="text" id="company" name="company" placeholder="Company/organization name (or Self-employed)">
+                    </div>
+
+                    <div class="grid-2">
+                        <div class="form-group">
+                            <label for="yearsExperience">Years of Life/Professional Experience *</label>
+                            <select id="yearsExperience" name="yearsExperience" required>
+                                <option value="">Select your experience level</option>
+                                <option value="5-10">5-10 years</option>
+                                <option value="10-15">10-15 years</option>
+                                <option value="15-20">15-20 years</option>
+                                <option value="20-25">20-25 years</option>
+                                <option value="25+">25+ years</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="education">Highest Education/Qualification *</label>
+                            <select id="education" name="education" required>
+                                <option value="">Select your highest qualification</option>
+                                <option value="high-school">High School Graduate</option>
+                                <option value="some-college">Some College</option>
+                                <option value="associate">Associate Degree</option>
+                                <option value="bachelor">Bachelor's Degree</option>
+                                <option value="master">Master's Degree</option>
+                                <option value="professional">Professional Certification</option>
+                                <option value="life-experience">Extensive Life Experience</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="certifications">Professional Certifications & Achievements</label>
+                        <textarea id="certifications" name="certifications" rows="3" placeholder="List any relevant certifications, awards, or achievements that demonstrate your expertise in personal development..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="experience">Life & Professional Experience *</label>
+                        <textarea id="experience" name="experience" rows="4" required placeholder="Describe your life journey, professional experience, personal growth experiences, and key lessons you've learned that you could share with others..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="mentorExperience">Previous Teaching/Mentoring Experience</label>
+                        <textarea id="mentorExperience" name="mentorExperience" rows="3" placeholder="Describe any previous teaching, training, or mentoring experience you have (formal or informal)..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="motivation">Why do you want to become a mentor? *</label>
+                        <textarea id="motivation" name="motivation" rows="4" required placeholder="Tell us what motivates you to mentor young people and what you hope to contribute to their development..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Select Your Primary Mentorship Area *</label>
+                        <p style="color: #666; font-size: 0.9rem; margin-bottom: 1rem;">Choose the area where you have the most life experience and wisdom to share with mentees.</p>
+                        <div class="programs-grid">
+                            <div class="program-option" onclick="selectMentorProgram(this, 'self-awareness')">
+                                <h4>🧠 Self-Awareness</h4>
+                                <p>Guiding others to understand their inner world</p>
+                            </div>
+                            <div class="program-option" onclick="selectMentorProgram(this, 'self-development')">
+                                <h4>📈 Self-Development</h4>
+                                <p>Supporting continuous personal growth</p>
+                            </div>
+                            <div class="program-option" onclick="selectMentorProgram(this, 'self-mastery')">
+                                <h4>⚖️ Self-Mastery</h4>
+                                <p>Teaching self-control and discipline</p>
+                            </div>
+                            <div class="program-option" onclick="selectMentorProgram(this, 'deliberate-creation')">
+                                <h4>🎯 Deliberate Creation</h4>
+                                <p>Helping others shape their reality</p>
+                            </div>
+                            <div class="program-option" onclick="selectMentorProgram(this, 'abundance')">
+                                <h4>💎 Law of Abundance</h4>
+                                <p>Shifting mindsets about opportunities</p>
+                            </div>
+                            <div class="program-option" onclick="selectMentorProgram(this, 'life-coaching')">
+                                <h4>🌟 General Life Coaching</h4>
+                                <p>Holistic approach to personal transformation</p>
+                            </div>
+                            <div class="program-option" onclick="selectMentorProgram(this, 'new-program')">
+                                <h4>➕ Suggest New Area</h4>
+                                <p>My expertise is in a different area</p>
+                            </div>
+                        </div>
+                        <input type="hidden" id="selectedMentorProgram" name="mentorProgram" required>
+                    </div>
+
+                    <div class="form-group" id="newProgramSection" style="display: none;">
+                        <label for="newProgramName">New Program Name *</label>
+                        <input type="text" id="newProgramName" name="newProgramName" placeholder="e.g., Solar Panel Installation, Landscaping, etc.">
+                    </div>
+
+                    <div class="form-group" id="newProgramDescription" style="display: none;">
+                        <label for="newProgramDesc">Program Description *</label>
+                        <textarea id="newProgramDesc" name="newProgramDesc" rows="3" placeholder="Describe the skills, career opportunities, and why this program would benefit our students..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="additionalPrograms">Additional Areas You Could Mentor</label>
+                        <p style="color: #666; font-size: 0.9rem; margin-bottom: 0.5rem;">Select any other areas where you have sufficient life experience to guide others (optional).</p>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="additionalPrograms" value="self-awareness">
+                                <span>Self-Awareness</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="additionalPrograms" value="self-development">
+                                <span>Self-Development</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="additionalPrograms" value="self-mastery">
+                                <span>Self-Mastery</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="additionalPrograms" value="deliberate-creation">
+                                <span>Deliberate Creation</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="additionalPrograms" value="abundance">
+                                <span>Law of Abundance</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="additionalPrograms" value="life-coaching">
+                                <span>Life Coaching</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="grid-2">
+                        <div class="form-group">
+                            <label for="availability">Available Time Commitment *</label>
+                            <select id="availability" name="availability" required>
+                                <option value="">Select your availability</option>
+                                <option value="2-4-hours">2-4 hours per week</option>
+                                <option value="4-6-hours">4-6 hours per week</option>
+                                <option value="6-8-hours">6-8 hours per week</option>
+                                <option value="8+-hours">8+ hours per week</option>
+                                <option value="flexible">Flexible</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="schedule">Preferred Schedule *</label>
+                            <select id="schedule" name="schedule" required>
+                                <option value="">Select your preferred times</option>
+                                <option value="weekday-mornings">Weekday Mornings</option>
+                                <option value="weekday-afternoons">Weekday Afternoons</option>
+                                <option value="weekday-evenings">Weekday Evenings</option>
+                                <option value="weekends">Weekends</option>
+                                <option value="flexible">Flexible</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="mentorshipStyle">Preferred Mentorship Style</label>
+                        <select id="mentorshipStyle" name="mentorshipStyle">
+                            <option value="">Select your preference</option>
+                            <option value="one-on-one">One-on-one mentoring</option>
+                            <option value="small-groups">Small group sessions (2-4 students)</option>
+                            <option value="workshops">Workshop/classroom teaching</option>
+                            <option value="combination">Combination of approaches</option>
+                        </select>
+                    </div>
+
+                    <div class="grid-2">
+                        <div class="form-group">
+                            <label for="applicationLetter">Application Letter *</label>
+                            <p style="color: #666; font-size: 0.9rem; margin-bottom: 0.5rem;">Upload a brief letter explaining why you want to mentor and what you can offer our students.</p>
+                            <input type="file" id="applicationLetter" name="applicationLetter" accept=".pdf,.doc,.docx" required>
+                            <small style="color: #666;">Accepted formats: PDF, DOC, DOCX (Max size: 5MB)</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="cv">Curriculum Vitae (CV/Resume) *</label>
+                            <p style="color: #666; font-size: 0.9rem; margin-bottom: 0.5rem;">Upload your current CV or resume highlighting your professional experience and qualifications.</p>
+                            <input type="file" id="cv" name="cv" accept=".pdf,.doc,.docx" required>
+                            <small style="color: #666;">Accepted formats: PDF, DOC, DOCX (Max size: 5MB)</small>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="references">Professional References</label>
+                        <textarea id="references" name="references" rows="3" placeholder="Please provide 2-3 professional references with their names, relationships, and contact information..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="additionalInfo">Additional Information</label>
+                        <textarea id="additionalInfo" name="additionalInfo" rows="3" placeholder="Any additional information you'd like us to know about your background, interests, or mentoring approach..."></textarea>
+                    </div>
+
+                    <div class="info-box">
+                        <h4>📋 Application Process</h4>
+                        <ul>
+                            <li>Application review and initial screening (5-7 business days)</li>
+                            <li>Phone/video interview to discuss your life experiences and wisdom</li>
+                            <li>Background check and reference verification</li>
+                            <li>In-person meeting to understand your mentoring style</li>
+                            <li>Mentor orientation on GyG philosophy and experience-based learning</li>
+                            <li>Match with mentees and begin your transformational journey together</li>
+                        </ul>
+                    </div>
+
+                    <div class="tip-box">
+                        <h4>💡 What We Provide</h4>
+                        <ul style="margin-left: 1.5rem; line-height: 1.6;">
+                            <li>Guidance on the GyG syllabus and experience-based mentoring approach</li>
+                            <li>Access to "Diamond In You" book content when released</li>
+                            <li>Ongoing support from our mentoring community</li>
+                            <li>Platform to share your wisdom through our blog system</li>
+                            <li>Recognition and appreciation for your contribution to transformation</li>
+                        </ul>
+                    </div>
+
+                    <label class="checkbox-label">
+                        <input type="checkbox" required>
+                        <span>I agree to undergo a background check and provide references as part of the application process. I understand that acceptance is subject to successful completion of all screening requirements. *</span>
+                    </label>
+
+                    <label class="checkbox-label">
+                        <input type="checkbox">
+                        <span>I'd like to receive updates about mentor events, training opportunities, and program news.</span>
+                    </label>
+
+                    <button type="submit" class="submit-btn">
+                        Submit Mentor Application
+                    </button>
+
+                    <p style="text-align: center; color: #666; margin-top: 1rem; font-size: 0.9rem;">
+                        Questions? Contact our HR team at <a href="mailto:vimextra12@gmail.com" style="color: #667eea;">vimextra12@gmail.com</a> or <a href="tel:+15551234567" style="color: #667eea;">(555) 123-4567</a>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Grow Your Greatness. Empowering youth through mentorship and skill development.</p>
+            <p style="margin-top: 0.5rem; font-size: 0.9rem; opacity: 0.8;">
+                <a href="mailto:info@growyourgreatness.org">info@growyourgreatness.org</a> | 
+                <a href="tel:+15551234567">(555) 123-4567</a>
+            </p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

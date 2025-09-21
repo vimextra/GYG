@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join Us - Grow Your Greatness</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <meta name="description" content="Apply to join our mentorship program and start your journey toward a rewarding blue-collar career.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropbtn {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+
+        .dropbtn:hover {
+            opacity: 0.8;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            background-color: white;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+            z-index: 1001;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .dropdown-content a {
+            color: #333;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            transition: background-color 0.3s;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+
+        .dropdown-content.show {
+            display: block;
+        }
+
+        main {
+            margin-top: 80px;
+            min-height: calc(100vh - 160px);
+        }
+
+        .page-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .form-container {
+            max-width: 800px;
+            margin: 60px auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .programs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .program-option {
+            padding: 1.5rem;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+            background: white;
+        }
+
+        .program-option:hover {
+            border-color: #667eea;
+            background: #f8f9ff;
+            transform: translateY(-2px);
+        }
+
+        .program-option.selected {
+            border-color: #667eea;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .program-option h4 {
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .program-option p {
+            margin: 0;
+            font-size: 0.9rem;
+        }
+
+        .submit-btn {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            width: 100%;
+            transition: opacity 0.3s;
+        }
+
+        .submit-btn:hover {
+            opacity: 0.9;
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .info-box {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+        }
+
+        .info-box h4 {
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .info-box ul {
+            color: #666;
+            line-height: 1.8;
+            margin-left: 1.5rem;
+        }
+
+        .tip-box {
+            background: #e8f4fd;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid #2196f3;
+            margin: 2rem 0;
+        }
+
+        .tip-box h4 {
+            color: #1976d2;
+            margin-bottom: 0.5rem;
+        }
+
+        .tip-box p {
+            color: #333;
+            margin: 0;
+        }
+
+        .checkbox-label {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+            cursor: pointer;
+            margin-bottom: 1rem;
+        }
+
+        .checkbox-label input[type="checkbox"] {
+            margin-top: 0.2rem;
+            width: auto;
+        }
+
+        .message-box {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            border-radius: 8px;
+            text-align: center;
+            display: none;
+        }
+
+        .success-message {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+        }
+
+        .error-message {
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+        }
+
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+
+        footer a {
+            color: white;
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+            
+            .programs-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .page-header h1 {
+                font-size: 2rem;
+            }
+            
+            .container {
+                padding: 0 15px;
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .dropbtn {
+                padding: 6px 12px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">Grow Your Greatness</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="programs.html">Programs</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li class="dropdown">
+                    <button onclick="toggleDropdown()" class="dropbtn">Join Us &#9662;</button>
+                    <div id="dropdownMenu" class="dropdown-content">
+                        <a href="registration.html">Student</a>
+                        <a href="mentor_registration.html">Mentor</a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <div class="container">
+                <h1>Join Our Mentorship Program</h1>
+                <p>Take the first step toward building your future in a rewarding blue-collar career</p>
+            </div>
+        </section>
+
+        <div class="container">
+            <div style="max-width: 800px; margin: 3rem auto; text-align: center;">
+                <h2 style="color: #333; margin-bottom: 1rem;">Ready to Transform Your Future?</h2>
+                <p style="color: #666; font-size: 1.1rem; line-height: 1.6;">Join our personal development mentorship program based on experience-based learning. Discover your inner diamond through self-awareness, self-development, and self-mastery with guidance from experienced mentors.</p>
+            </div>
+
+            <!-- Success Message -->
+            <div id="successMessage" class="message-box success-message">
+                <h3 style="margin-bottom: 1rem; color: #155724;">🎉 Application Submitted Successfully!</h3>
+                <p>Thank you for applying to our mentorship program. We've received your application and will review it within 3-5 business days. You'll hear from us soon via email or phone.</p>
+            </div>
+
+            <!-- Error Message -->
+            <div id="errorMessage" class="message-box error-message">
+                <h3 style="margin-bottom: 1rem; color: #721c24;">⚠ Submission Error</h3>
+                <p>There was an error submitting your application. Please try again or contact us directly at <a href="mailto:applications@growyourgreatness.org" style="color: #721c24;">applications@growyourgreatness.org</a></p>
+            </div>
+
+            <div class="form-container">
+                <form id="registrationForm" action="https://formspree.io/f/xldwavlw" method="POST">
+                    <!-- Formspree Configuration -->
+                    <input type="hidden" name="_subject" value="New Student Application - Grow Your Greatness">
+                    <input type="hidden" name="_next" value="thank-you.html">
+                    <input type="hidden" name="_captcha" value="false">
+
+                    <div style="background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 1.5rem; border-radius: 10px; margin-bottom: 2rem; text-align: center;">
+                        <h3 style="margin-bottom: 0.5rem;">Student Application Form</h3>
+                        <p style="opacity: 0.9; margin: 0;">All fields marked with * are required</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="fullName">Full Name *</label>
+                        <input type="text" id="fullName" name="fullName" required placeholder="Enter your full name">
+                    </div>
+
+                    <div class="grid-2">
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" name="email" required placeholder="your.email@example.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number *</label>
+                            <input type="tel" id="phone" name="phone" required placeholder="(555) 123-4567">
+                        </div>
+                    </div>
+
+                    <div class="grid-2">
+                        <div class="form-group">
+                            <label for="age">Age *</label>
+                            <input type="number" id="age" name="age" min="16" max="35" required placeholder="18">
+                        </div>
+                        <div class="form-group">
+                            <label for="city">City/Location *</label>
+                            <input type="text" id="city" name="city" required placeholder="Your city">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="education">Highest Education Level *</label>
+                        <select id="education" name="education" required>
+                            <option value="">Select your education level</option>
+                            <option value="high-school">High School Graduate/GED</option>
+                            <option value="some-college">Some College (No Degree)</option>
+                            <option value="associate">Associate Degree</option>
+                            <option value="bachelor">Bachelor's Degree</option>
+                            <option value="trade-cert">Trade Certification</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="employment">Current Employment Status</label>
+                        <select id="employment" name="employment">
+                            <option value="">Select your current status</option>
+                            <option value="unemployed">Unemployed</option>
+                            <option value="part-time">Part-time Employment</option>
+                            <option value="full-time">Full-time Employment</option>
+                            <option value="student">Student</option>
+                            <option value="between-jobs">Between Jobs</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="experience">Previous Work Experience</label>
+                        <textarea id="experience" name="experience" rows="3" placeholder="Briefly describe any work experience you have, including part-time jobs, internships, or volunteer work..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="motivation">Why do you want to join our personal development program? *</label>
+                        <textarea id="motivation" name="motivation" rows="4" required placeholder="Tell us what motivates you to pursue personal growth and self-mastery, and what you hope to achieve through our mentorship program..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="challenges">What personal challenges have you faced in your journey?</label>
+                        <textarea id="challenges" name="challenges" rows="3" placeholder="Share any obstacles in your personal development and how our mentorship program might help you overcome them..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="goals">Personal Development Goals (5 years from now)</label>
+                        <textarea id="goals" name="goals" rows="3" placeholder="Describe where you see yourself personally and professionally in 5 years..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Choose Your Primary Area of Focus *</label>
+                        <p style="color: #666; font-size: 0.9rem; margin-bottom: 1rem;">Select the area of personal development you're most interested in exploring. You can develop all areas during your mentorship journey.</p>
+                        <div class="programs-grid">
+                            <div class="program-option" onclick="selectProgram(this, 'self-awareness')">
+                                <h4>🧠 Self-Awareness</h4>
+                                <p>Understanding your inner world and aligning actions with values</p>
+                            </div>
+                            <div class="program-option" onclick="selectProgram(this, 'self-development')">
+                                <h4>📈 Self-Development</h4>
+                                <p>Continuous personal growth through individual effort</p>
+                            </div>
+                            <div class="program-option" onclick="selectProgram(this, 'self-mastery')">
+                                <h4>⚖️ Self-Mastery</h4>
+                                <p>Developing self-control and inner discipline</p>
+                            </div>
+                            <div class="program-option" onclick="selectProgram(this, 'deliberate-creation')">
+                                <h4>🎯 Deliberate Creation</h4>
+                                <p>Consciously shaping your life through thoughts and intentions</p>
+                            </div>
+                            <div class="program-option" onclick="selectProgram(this, 'abundance')">
+                                <h4>💎 Law of Abundance</h4>
+                                <p>Recognizing unlimited opportunities and resources</p>
+                            </div>
+                            <div class="program-option" onclick="selectProgram(this, 'holistic')">
+                                <h4>🌟 Holistic Approach</h4>
+                                <p>Integrate all five areas for complete personal transformation</p>
+                            </div>
+                        </div>
+                        <input type="hidden" id="selectedProgram" name="program" required>
+                    </div>
+
+                    <div class="grid-2">
+                        <div class="form-group">
+                            <label for="availability">When can you start? *</label>
+                            <select id="availability" name="availability" required>
+                                <option value="">Select your availability</option>
+                                <option value="immediately">Immediately</option>
+                                <option value="1-month">Within 1 month</option>
+                                <option value="2-3-months">2-3 months</option>
+                                <option value="flexible">Flexible timing</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="schedule">Preferred Schedule *</label>
+                            <select id="schedule" name="schedule" required>
+                                <option value="">Select your preferred schedule</option>
+                                <option value="full-time-day">Full-time (Daytime)</option>
+                                <option value="full-time-evening">Full-time (Evening)</option>
+                                <option value="part-time-weekends">Part-time (Weekends)</option>
+                                <option value="part-time-evenings">Part-time (Evenings)</option>
+                                <option value="flexible">Flexible</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="transportation">Do you have reliable transportation? *</label>
+                        <select id="transportation" name="transportation" required>
+                            <option value="">Select an option</option>
+                            <option value="yes">Yes, I have my own vehicle</option>
+                            <option value="public">I use public transportation</option>
+                            <option value="arranging">I can arrange transportation</option>
+                            <option value="need-help">I need assistance with transportation</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="financial">Financial Situation (Optional)</label>
+                        <p style="color: #666; font-size: 0.9rem; margin-bottom: 0.5rem;">This helps us understand if you might qualify for scholarships or financial assistance.</p>
+                        <select id="financial" name="financial">
+                            <option value="">Prefer not to answer</option>
+                            <option value="can-afford">Can afford program costs</option>
+                            <option value="some-assistance">Would benefit from partial assistance</option>
+                            <option value="need-scholarship">Would need scholarship/financial aid</option>
+                            <option value="discuss">Prefer to discuss during interview</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="referral">How did you hear about us?</label>
+                        <select id="referral" name="referral">
+                            <option value="">Select an option</option>
+                            <option value="social-media">Social Media</option>
+                            <option value="friend-family">Friend or Family Member</option>
+                            <option value="current-mentee">Current Program Participant</option>
+                            <option value="graduate">Program Graduate</option>
+                            <option value="community-event">Community Event</option>
+                            <option value="online-search">Online Search</option>
+                            <option value="school-counselor">School Counselor</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="additional">Additional Information</label>
+                        <textarea id="additional" name="additional" rows="3" placeholder="Anything else you'd like us to know about you, your situation, or your goals?"></textarea>
+                    </div>
+
+                    <div class="info-box">
+                        <h4>📋 Next Steps</h4>
+                        <ul>
+                            <li>We'll review your application within 3-5 business days</li>
+                            <li>If accepted, we'll schedule a personal interview to understand your goals</li>
+                            <li>You'll be matched with a mentor who aligns with your development focus</li>
+                            <li>Together, we'll create your personalized growth plan based on the GyG syllabus</li>
+                        </ul>
+                    </div>
+
+                    <div class="tip-box">
+                        <h4>💡 About GyG</h4>
+                        <p>Our program is based on experience-based learning rather than traditional materials. Your mentor will guide you through the five core areas: Self-Awareness, Self-Development, Self-Mastery, Law of Deliberate Creation, and Law of Abundance. Remember: "Our time on Earth is limited - let us leave an undeniable mark on the planet."</p>
+                    </div>
+
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="terms_agreement" required>
+                        <span>I agree to the program terms and understand that acceptance is based on application review, interview, and program availability. I commit to attending regularly and participating fully if accepted. *</span>
+                    </label>
+
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="email_updates">
+                        <span>I'd like to receive updates about Grow Your Greatness programs, events, and success stories via email.</span>
+                    </label>
+
+                    <button type="submit" id="submitBtn" class="submit-btn">
+                        Submit My Application
+                    </button>
+
+                    <p style="text-align: center; color: #666; margin-top: 1rem; font-size: 0.9rem;">
+                        Questions? Contact us at <a href="mailto:applications@growyourgreatness.org" style="color: #667eea;">applications@growyourgreatness.org</a> or <a href="tel:+15551234567" style="color: #667eea;">(555) 123-4567</a>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Grow Your Greatness. Empowering youth through mentorship and skill development.</p>
+            <p style="margin-top: 0.5rem; font-size: 0.9rem; opacity: 0.8;">
+                <a href="mailto:info@growyourgreatness.org">info@growyourgreatness.org</a> | 
+                <a href="tel:+15551234567">(555) 123-4567</a>
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Dropdown functionality
+        function toggleDropdown() {
+            document.getElementById("dropdownMenu").classList.toggle("show");
+        }
+
+        // Close dropdown when clicking outside
+        window.onclick = function(event) {
+            if (!event.target.matches('.dropbtn')) {
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                for (var i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
+
+        // Program selection functionality
+        function selectProgram(element, program) {
+            // Remove selection from all programs
+            const options = document.querySelectorAll('.program-option');
+            options.forEach(option => option.classList.remove('selected'));
+            
+            // Select clicked program
+            element.classList.add('selected');
+            document.getElementById('selectedProgram').value = program;
+        }
+
+        // Form validation
+        function validateForm() {
+            const selectedProgram = document.getElementById('selectedProgram').value;
+            if (!selectedProgram) {
+                alert('Please select a mentorship program');
+                return false;
+            }
+            return true;
+        }
+
+        // Form submission handling
+        document.getElementById('registrationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            if (!validateForm()) {
+                return;
+            }
+            
+            const form = e.target;
+            const submitBtn = document.getElementById('submitBtn');
+            const successMessage = document.getElementById('successMessage');
+            const errorMessage = document.getElementById('errorMessage');
+            
+            // Hide any existing messages
+            successMessage.style.display = 'none';
+            errorMessage.style.display = 'none';
+            
+            // Update button text and disable it
+            submitBtn.innerHTML = 'Submitting...';
+            submitBtn.disabled = true;
+            
+            // Simulate form submission (replace with actual form submission logic)
+            setTimeout(() => {
+                try {
+                    // Here you would normally send the data to your server
+                    // For now, we'll simulate a successful submission
+                    
+                    // Hide form and show success message
+                    form.style.display = 'none';
+                    successMessage.style.display = 'block';
+                    successMessage.scrollIntoView({ behavior: 'smooth' });
+                    
+                } catch (error) {
+                    console.error('Error submitting form:', error);
+                    errorMessage.style.display = 'block';
+                    errorMessage.scrollIntoView({ behavior: 'smooth' });
+                } finally {
+                    // Reset button
+                    submitBtn.innerHTML = 'Submit My Application';
+                    submitBtn.disabled = false;
+                }
+            }, 1000);
+        });
+
+        // Form field validation
+        function initFormValidation() {
+            const inputs = document.querySelectorAll('input[required], select[required], textarea[required]');
+            inputs.forEach(input => {
+                input.addEventListener('blur', function() {
+                    if (!this.value.trim()) {
+                        this.style.borderColor = '#ff4757';
+                    } else {
+                        this.style.borderColor = '#2ed573';
+                    }
+                });
+                
+                input.addEventListener('focus', function() {
+                    this.style.borderColor = '#667eea';
+                });
+            });
+            
+            // Email validation
+            const emailInputs = document.querySelectorAll('input[type="email"]');
+            emailInputs.forEach(input => {
+                input.addEventListener('blur', function() {
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (this.value && !emailRegex.test(this.value)) {
+                        this.style.borderColor = '#ff4757';
+                        this.setCustomValidity('Please enter a valid email address');
+                    } else {
+                        this.style.borderColor = this.value ? '#2ed573' : '#ddd';
+                        this.setCustomValidity('');
+                    }
+                });
+            });
+        }
+
+        // Initialize validation when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            initFormValidation();
+        });
+    </script>
+</body>
+</html>

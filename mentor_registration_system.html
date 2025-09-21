@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Mentor Account - Grow Your Greatness</title>
+    <link rel="stylesheet" href="styles.css">
+    <meta name="description" content="Create your mentor account to start sharing wisdom through our blog platform.">
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">Grow Your Greatness</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="programs.html">Programs</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li class="dropdown">
+                    <button onclick="toggleDropdown()" class="dropbtn">Join Us &#9662;</button>
+                    <div id="dropdownMenu" class="dropdown-content">
+                        <a href="registration.html">Student</a>
+                        <a href="mentor_registration.html">Apply as Mentor</a>
+                        <a href="mentor_signup.html">Mentor Login/Signup</a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <div class="container">
+                <h1>Create Your Mentor Account</h1>
+                <p>Join our community of mentors and start sharing your wisdom</p>
+            </div>
+        </section>
+
+        <div class="container">
+            <!-- Account Creation Notice -->
+            <div class="info-notice">
+                <h3>Account Creation Process</h3>
+                <p>This account is for approved mentors only. If you haven't been approved yet, please <a href="mentor_registration.html">submit your application first</a>.</p>
+                <p>Once approved, our team will provide you with an activation code to create your account.</p>
+            </div>
+
+            <!-- Success/Error Messages -->
+            <div id="successMessage" class="message-box success-message">
+                <h3>Account Created Successfully!</h3>
+                <p>Welcome to the GyG mentor community! You can now login to access your dashboard and start sharing your insights.</p>
+            </div>
+
+            <div id="errorMessage" class="message-box error-message">
+                <h3>Registration Error</h3>
+                <p id="errorText">Please check the form and try again.</p>
+            </div>
+
+            <div class="login-container">
+                <!-- Registration Form -->
+                <div class="registration-card">
+                    <div class="auth-tabs">
+                        <button class="tab-btn active" onclick="switchTab('signup')">Create Account</button>
+                        <button class="tab-btn" onclick="switchTab('login')">Login</button>
+                    </div>
+
+                    <!-- Sign Up Form -->
+                    <div id="signupForm" class="auth-form active">
+                        <h2>Create Mentor Account</h2>
+                        <form id="mentorSignupForm">
+                            <div class="form-group">
+                                <label for="activationCode">Activation Code *</label>
+                                <input type="text" id="activationCode" name="activationCode" required placeholder="Enter your activation code">
+                                <small>Provided by our team after approval</small>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="fullName">Full Name *</label>
+                                <input type="text" id="fullName" name="fullName" required placeholder="Enter your full name">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">Email Address *</label>
+                                <input type="email" id="email" name="email" required placeholder="your.email@example.com">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="username">Username *</label>
+                                <input type="text" id="username" name="username" required placeholder="Choose a unique username">
+                                <small>This will appear on your blog posts</small>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="password">Password *</label>
+                                <input type="password" id="password" name="password" required placeholder="Create a secure password">
+                                <div class="password-strength">
+                                    <div class="strength-bar"></div>
+                                    <span class="strength-text">Password strength</span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="confirmPassword">Confirm Password *</label>
+                                <input type="password" id="confirmPassword" name="confirmPassword" required placeholder="Confirm your password">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="mentorshipArea">Primary Mentorship Area *</label>
+                                <select id="mentorshipArea" name="mentorshipArea" required>
+                                    <option value="">Select your area</option>
+                                    <option value="self-awareness">Self-Awareness</option>
+                                    <option value="self-development">Self-Development</option>
+                                    <option value="self-mastery">Self-Mastery</option>
+                                    <option value="deliberate-creation">Law of Deliberate Creation</option>
+                                    <option value="abundance">Law of Abundance</option>
+                                    <option value="life-coaching">General Life Coaching</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="bio">Short Bio *</label>
+                                <textarea id="bio" name="bio" rows="4" required placeholder="Brief description of your background and expertise (will appear on your blog posts)"></textarea>
+                                <small>Keep it under 200 characters</small>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="terms" required>
+                                    <span>I agree to the <a href="#" onclick="showTerms()">Terms of Service</a> and <a href="#" onclick="showPrivacy()">Privacy Policy</a></span>
+                                </label>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="blogGuidelines" required>
+                                    <span>I understand and agree to follow the <a href="#" onclick="showBlogGuidelines()">Blog Content Guidelines</a></span>
+                                </label>
+                            </div>
+
+                            <button type="submit" class="submit-btn">Create Account</button>
+                        </form>
+                    </div>
+
+                    <!-- Login Form -->
+                    <div id="loginForm" class="auth-form">
+                        <h2>Welcome Back</h2>
+                        <form id="mentorLoginForm">
+                            <div class="form-group">
+                                <label for="loginEmail">Email or Username</label>
+                                <input type="text" id="loginEmail" name="loginIdentifier" required placeholder="Enter email or username">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="loginPassword">Password</label>
+                                <input type="password" id="loginPassword" name="password" required placeholder="Enter your password">
+                            </div>
+
+                            <div class="form-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="rememberMe">
+                                    <span>Remember me</span>
+                                </label>
+                            </div>
+
+                            <button type="submit" class="submit-btn">Login</button>
+                            
+                            <div class="form-links">
+                                <a href="#" onclick="showForgotPassword()">Forgot your password?</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Information Panel -->
+                <div class="info-panel">
+                    <h3>Mentor Benefits</h3>
+                    
+                    <div class="benefit-item">
+                        <h4>Share Your Wisdom</h4>
+                        <p>Create and publish blog posts to share your life experiences and insights with our community.</p>
+                    </div>
+
+                    <div class="benefit-item">
+                        <h4>Build Your Profile</h4>
+                        <p>Showcase your expertise and build your reputation as a thought leader in personal development.</p>
+                    </div>
+
+                    <div class="benefit-item">
+                        <h4>Connect with Others</h4>
+                        <p>Join a community of like-minded mentors and make meaningful connections.</p>
+                    </div>
+
+                    <div class="benefit-item">
+                        <h4>Track Your Impact</h4>
+                        <p>Monitor your blog post performance and see how your content impacts readers.</p>
+                    </div>
+
+                    <div class="contact-help">
+                        <h4>Need Help?</h4>
+                        <p>Contact our support team:</p>
+                        <p><a href="mailto:mentors@growyourgreatness.org">mentors@growyourgreatness.org</a></p>
+                        <p><a href="tel:+15551234567">(555) 123-4567</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Terms Modal -->
+    <div id="termsModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('termsModal')">&times;</span>
+            <h3>Terms of Service</h3>
+            <div class="modal-body">
+                <p>By creating a mentor account, you agree to:</p>
+                <ul>
+                    <li>Share authentic, helpful content based on your experiences</li>
+                    <li>Respect all community members and maintain professional conduct</li>
+                    <li>Follow our content guidelines and community standards</li>
+                    <li>Not share harmful, discriminatory, or inappropriate content</li>
+                    <li>Allow us to moderate and review your blog posts before publication</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Blog Guidelines Modal -->
+    <div id="guidelinesModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('guidelinesModal')">&times;</span>
+            <h3>Blog Content Guidelines</h3>
+            <div class="modal-body">
+                <p>All blog content must:</p>
+                <ul>
+                    <li>Be based on personal experience and authentic wisdom</li>
+                    <li>Align with GyG's philosophy of experience-based learning</li>
+                    <li>Be respectful, encouraging, and constructive</li>
+                    <li>Focus on personal development themes</li>
+                    <li>Be original content written by you</li>
+                    <li>Be free from promotional or commercial content</li>
+                    <li>Undergo approval before publication</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Grow Your Greatness. Empowering through mentorship and personal development.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Tab switching functionality
+        function switchTab(tab) {
+            const tabs = document.querySelectorAll('.tab-btn');
+            const forms = document.querySelectorAll('.auth-form');
+            
+            tabs.forEach(t => t.classList.remove('active'));
+            forms.forEach(f => f.classList.remove('active'));
+            
+            if (tab === 'signup') {
+                document.querySelector('[onclick="switchTab(\'signup\')"]').classList.add('active');
+                document.getElementById('signupForm').classList.add('active');
+            } else {
+                document.querySelector('[onclick="switchTab(\'login\')"]').classList.add('active');
+                document.getElementById('loginForm').classList.add('active');
+            }
+        }
+
+        // Password strength checker
+        document.getElementById('password').addEventListener('input', function(e) {
+            const password = e.target.value;
+            const strengthBar = document.querySelector('.strength-bar');
+            const strengthText = document.querySelector('.strength-text');
+            
+            let strength = 0;
+            if (password.length >= 8) strength++;
+            if (/[a-z]/.test(password)) strength++;
+            if (/[A-Z]/.test(password)) strength++;
+            if (/[0-9]/.test(password)) strength++;
+            if (/[^A-Za-z0-9]/.test(password)) strength++;
+            
+            const colors = ['#ff4757', '#ffa726', '#ffeb3b', '#66bb6a', '#4caf50'];
+            const texts = ['Very Weak', 'Weak', 'Fair', 'Good', 'Strong'];
+            
+            strengthBar.style.width = (strength * 20) + '%';
+            strengthBar.style.backgroundColor = colors[strength - 1] || '#ddd';
+            strengthText.textContent = texts[strength - 1] || 'Password strength';
+        });
+
+        // Form validation and submission
+        document.getElementById('mentorSignupForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const password = formData.get('password');
+            const confirmPassword = formData.get('confirmPassword');
+            
+            // Validate passwords match
+            if (password !== confirmPassword) {
+                showError('Passwords do not match');
+                return;
+            }
+            
+            // Validate password strength
+            if (password.length < 8) {
+                showError('Password must be at least 8 characters long');
+                return;
+            }
+            
+            hideMessages();
+            const submitBtn = this.querySelector('.submit-btn');
+            const originalText = submitBtn.textContent;
+            
+            submitBtn.textContent = 'Creating Account...';
+            submitBtn.disabled = true;
+            
+            // Simulate account creation (replace with actual API call)
+            setTimeout(() => {
+                try {
+                    // In real implementation, send data to your backend
+                    const userData = {
+                        activationCode: formData.get('activationCode'),
+                        fullName: formData.get('fullName'),
+                        email: formData.get('email'),
+                        username: formData.get('username'),
+                        password: formData.get('password'),
+                        mentorshipArea: formData.get('mentorshipArea'),
+                        bio: formData.get('bio')
+                    };
+                    
+                    // Validate activation code (demo validation)
+                    if (userData.activationCode !== 'DEMO2024') {
+                        throw new Error('Invalid activation code');
+                    }
+                    
+                    showSuccess('Account created successfully! You can now login to access your dashboard.');
+                    this.reset();
+                    switchTab('login');
+                    
+                } catch (error) {
+                    showError(error.message || 'Failed to create account. Please try again.');
+                } finally {
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
+                }
+            }, 2000);
+        });
+
+        // Login form submission
+        document.getElementById('mentorLoginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            hideMessages();
+            
+            const submitBtn = this.querySelector('.submit-btn');
+            const originalText = submitBtn.textContent;
+            
+            submitBtn.textContent = 'Logging in...';
+            submitBtn.disabled = true;
+            
+            setTimeout(() => {
+                // Demo credentials
+                const email = formData.get('loginIdentifier');
+                const password = formData.get('password');
+                
+                if ((email === 'mentor@example.com' || email === 'mentor') && password === 'mentor123') {
+                    alert('Login successful! Redirecting to dashboard...');
+                    window.location.href = 'mentor_dashboard.html';
+                } else {
+                    showError('Invalid email/username or password');
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
+                }
+            }, 1500);
+        });
+
+        // Utility functions
+        function showError(message) {
+            document.getElementById('errorText').textContent = message;
+            document.getElementById('errorMessage').style.display = 'block';
+            document.getElementById('successMessage').style.display = 'none';
+        }
+
+        function showSuccess(message) {
+            document.getElementById('successMessage').querySelector('p').textContent = message;
+            document.getElementById('successMessage').style.display = 'block';
+            document.getElementById('errorMessage').style.display = 'none';
+        }
+
+        function hideMessages() {
+            document.getElementById('errorMessage').style.display = 'none';
+            document.getElementById('successMessage').style.display = 'none';
+        }
+
+        function showTerms() {
+            document.getElementById('termsModal').style.display = 'flex';
+        }
+
+        function showBlogGuidelines() {
+            document.getElementById('guidelinesModal').style.display = 'flex';
+        }
+
+        function showPrivacy() {
+            alert('Privacy Policy: We protect your personal information and only use it for program purposes.');
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+
+        function showForgotPassword() {
+            const email = prompt('Enter your email address:');
+            if (email) {
+                alert('Password reset link sent to ' + email);
+            }
+        }
+
+        // Close modals when clicking outside
+        window.addEventListener('click', function(e) {
+            if (e.target.classList.contains('modal')) {
+                e.target.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

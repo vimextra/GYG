@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mentor Login - Grow Your Greatness</title>
+    <link rel="stylesheet" href="styles.css">
+    <meta name="description" content="Login portal for approved mentors to access the dashboard.">
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">Grow Your Greatness</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="programs.html">Programs</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li class="dropdown">
+                    <button onclick="toggleDropdown()" class="dropbtn">Join Us &#9662;</button>
+                    <div id="dropdownMenu" class="dropdown-content">
+                        <a href="registration.html">Student</a>
+                        <a href="mentor_registration.html">Mentor</a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <div class="container">
+                <h1>Mentor Login</h1>
+                <p>Access your dashboard to share insights with students</p>
+            </div>
+        </section>
+
+        <div class="container">
+            <div class="login-container">
+                <div class="login-card">
+                    <h2>Welcome Back</h2>
+                    <p>Login to access your mentor dashboard</p>
+
+                    <form id="mentorLoginForm" class="login-form">
+                        <div class="form-group">
+                            <label for="loginEmail">Email Address</label>
+                            <input type="email" id="loginEmail" name="email" required placeholder="your.email@example.com">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="loginPassword">Password</label>
+                            <input type="password" id="loginPassword" name="password" required placeholder="Enter your password">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="rememberMe">
+                                <span>Remember me</span>
+                            </label>
+                        </div>
+
+                        <button type="submit" class="submit-btn">Login</button>
+                    </form>
+
+                    <div class="login-links">
+                        <a href="#" onclick="showForgotPassword()">Forgot your password?</a>
+                        <a href="mentor_registration.html">Not a mentor yet? Apply here</a>
+                    </div>
+                </div>
+
+                <div class="login-info">
+                    <h3>Mentor Access Only</h3>
+                    <p>This portal is exclusively for approved mentors who have completed our screening process.</p>
+                    
+                    <div class="info-item">
+                        <h4>What you can do:</h4>
+                        <ul>
+                            <li>Submit blog posts for review</li>
+                            <li>Share insights and experiences</li>
+                            <li>Connect with students through content</li>
+                            <li>Track your post performance</li>
+                        </ul>
+                    </div>
+
+                    <div class="info-item">
+                        <h4>Need help?</h4>
+                        <p>Contact our support team at <a href="mailto:mentors@growyourgreatness.org">mentors@growyourgreatness.org</a> or call <a href="tel:+15551234567">(555) 123-4567</a></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Forgot Password Modal (Initially hidden) -->
+            <div id="forgotPasswordModal" class="modal" style="display: none;">
+                <div class="modal-content">
+                    <span class="close" onclick="hideForgotPassword()">&times;</span>
+                    <h3>Reset Password</h3>
+                    <p>Enter your email address and we'll send you a link to reset your password.</p>
+                    <form id="forgotPasswordForm">
+                        <div class="form-group">
+                            <label for="resetEmail">Email Address</label>
+                            <input type="email" id="resetEmail" name="resetEmail" required>
+                        </div>
+                        <button type="submit" class="submit-btn">Send Reset Link</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Grow Your Greatness. Empowering youth through mentorship and skill development.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Login form handling
+        document.getElementById('mentorLoginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const form = e.target;
+            const submitBtn = form.querySelector('button[type="submit"]');
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            
+            // Simple validation
+            if (!email || !password) {
+                alert('Please enter both email and password');
+                return;
+            }
+            
+            // Update button state
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Logging in...';
+            submitBtn.disabled = true;
+            
+            // Simulate authentication (in real app, this would call your backend)
+            setTimeout(() => {
+                // Demo credentials for testing
+                if (email === 'mentor@example.com' && password === 'mentor123') {
+                    alert('Login successful! Redirecting to dashboard...');
+                    window.location.href = 'mentor_dashboard.html';
+                } else {
+                    alert('Invalid credentials. For demo, use:\nEmail: mentor@example.com\nPassword: mentor123');
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
+                }
+            }, 1500);
+        });
+
+        // Forgot password form
+        document.getElementById('forgotPasswordForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('resetEmail').value;
+            if (email) {
+                alert('Password reset link has been sent to ' + email);
+                hideForgotPassword();
+            }
+        });
+
+        function showForgotPassword() {
+            document.getElementById('forgotPasswordModal').style.display = 'flex';
+        }
+
+        function hideForgotPassword() {
+            document.getElementById('forgotPasswordModal').style.display = 'none';
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('forgotPasswordModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                hideForgotPassword();
+            }
+        });
+    </script>
+</body>
+</html>

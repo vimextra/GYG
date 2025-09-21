@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Grow Your Greatness</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <meta name="description" content="Get in touch with Grow Your Greatness to learn about mentorship opportunities, partnerships, or supporting our mission.">
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">Grow Your Greatness</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="programs.html">Programs</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li class="dropdown">
+                    <button onclick="toggleDropdown()" class="dropbtn">Join Us &#9662;</button>
+                    <div id="dropdownMenu" class="dropdown-content">
+                        <a href="registration.html">Student</a>
+                        <a href="mentor_registration.html">Mentor</a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <div class="container">
+                <h1>Get In Touch</h1>
+                <p>Ready to support youth development or learn more about our programs?</p>
+            </div>
+        </section>
+
+        <!-- Success Message -->
+        <div id="successMessage" class="message-box success-message">
+            <h3 style="margin-bottom: 1rem; color: #155724;">Thank You!</h3>
+            <p>Your message has been sent successfully. We'll get back to you within 24 hours.</p>
+        </div>
+
+        <!-- Error Message -->
+        <div id="errorMessage" class="message-box error-message">
+            <h3 style="margin-bottom: 1rem; color: #721c24;">Message Error</h3>
+            <p>There was an error sending your message. Please try again or contact us directly.</p>
+        </div>
+
+        <div class="container">
+            <div class="contact-content">
+                <div class="form-container">
+                    <h3 style="color: #333; margin-bottom: 1.5rem; text-align: center;">Send Us a Message</h3>
+                    <form id="contactForm" action="https://formspree.io/f/YOUR_CONTACT_FORM_ID" method="POST">
+                        <!-- Formspree Configuration -->
+                        <input type="hidden" name="_subject" value="Contact Form Submission - Grow Your Greatness">
+                        <input type="hidden" name="_next" value="contact-thank-you.html">
+                        <input type="hidden" name="_captcha" value="false">
+                        <div class="form-group">
+                            <label for="name">Full Name *</label>
+                            <input type="text" id="name" name="name" required placeholder="Enter your full name">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" name="email" required placeholder="your.email@example.com">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" placeholder="(555) 123-4567">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="organization">Organization/Company</label>
+                            <input type="text" id="organization" name="organization" placeholder="Your organization (if applicable)">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="interest">I'm interested in: *</label>
+                            <select id="interest" name="interest" required>
+                                <option value="">Select your interest</option>
+                                <option value="mentoring">Becoming a mentor</option>
+                                <option value="donation">Making a donation</option>
+                                <option value="partnership">Corporate partnership</option>
+                                <option value="volunteer">Volunteering opportunities</option>
+                                <option value="speaking">Speaking at events</option>
+                                <option value="media">Media/Press inquiry</option>
+                                <option value="general">General information</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="subject">Subject *</label>
+                            <input type="text" id="subject" name="subject" required placeholder="Brief subject line">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Message *</label>
+                            <textarea id="message" name="message" rows="5" required placeholder="Tell us more about your inquiry..."></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="timeline">Preferred Response Time</label>
+                            <select id="timeline" name="timeline">
+                                <option value="">No preference</option>
+                                <option value="asap">As soon as possible</option>
+                                <option value="week">Within a week</option>
+                                <option value="month">Within a month</option>
+                                <option value="flexible">Flexible</option>
+                            </select>
+                        </div>
+
+                        <button type="submit" class="submit-btn" id="contactSubmit">Send Message</button>
+                    </form>
+                </div>
+
+                <div class="contact-info">
+                    <h3 style="margin-bottom: 2rem;">Ways to Support Our Mission</h3>
+                    
+                    <div class="support-item">
+                        <h4>Become a Life Mentor</h4>
+                        <p>Share your life experiences and wisdom to guide others through personal transformation. We're looking for individuals with rich life experiences who are passionate about helping others discover their potential.</p>
+                        <div class="support-details">
+                            <p><strong>Time commitment:</strong> 2-4 hours per week</p>
+                            <p><strong>Requirements:</strong> Life experience, wisdom to share, background check</p>
+                        </div>
+                    </div>
+
+                    <div class="support-item">
+                        <h4>Make a Donation</h4>
+                        <p>Help us provide resources for personal development sessions and support our experience-based learning approach. Every contribution directly impacts someone's personal transformation journey.</p>
+                        <div class="donation-levels">
+                            <div class="donation-level">
+                                <span class="amount">$25</span>
+                                <span class="description">Support one mentorship session</span>
+                            </div>
+                            <div class="donation-level">
+                                <span class="amount">$100</span>
+                                <span class="description">Monthly program materials and resources</span>
+                            </div>
+                            <div class="donation-level">
+                                <span class="amount">$250</span>
+                                <span class="description">Sponsor a complete personal development journey</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="support-item">
+                        <h4>Corporate Partnership</h4>
+                        <p>Partner with us to support personal development initiatives for your employees or community. Help build stronger, more self-aware individuals while supporting our mission of transformation.</p>
+                        <p><strong>Benefits:</strong> Enhanced employee development, community impact, corporate social responsibility</p>
+                    </div>
+
+                    <div class="support-item">
+                        <h4>Volunteer Opportunities</h4>
+                        <p>Not ready to mentor but want to help? We need volunteers for organizing sessions, administrative support, event planning, and sharing our mission in the community.</p>
+                        <p><strong>Opportunities:</strong> Event coordination, social media, outreach, session support</p>
+                    </div>
+
+                    <div class="location-info">
+                        <h4>Visit Our Center</h4>
+                        <div class="location-details">
+                            <p><strong>Address:</strong><br>
+                            123 Community Way<br>
+                            Skills Development Center<br>
+                            Your City, State 12345</p>
+                            <p><strong>Phone:</strong> <a href="tel:+15551234567">(555) 123-4567</a></p>
+                            <p><strong>Email:</strong> <a href="mailto:info@growyourgreatness.org">info@growyourgreatness.org</a></p>
+                            <div class="hours">
+                                <p><strong>Hours:</strong></p>
+                                <p>Monday-Friday: 8:00 AM - 6:00 PM<br>
+                                Saturday: 9:00 AM - 3:00 PM<br>
+                                Sunday: Closed</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-section">
+                <h2>Frequently Asked Questions</h2>
+                
+                <div class="faq-grid">
+                    <div class="faq-item">
+                        <h4>How do I become a life mentor?</h4>
+                        <p>Contact us through this form or call directly. We'll schedule an interview to understand your life experiences and wisdom, conduct a background check, and provide orientation on our experience-based mentoring approach.</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <h4>What is experience-based learning?</h4>
+                        <p>GyG has no traditional materials - our lessons are based on shared experiences and wisdom. Mentors guide others through the five core areas using personal stories, life lessons, and practical insights.</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <h4>How are donations used?</h4>
+                        <p>100% of donations go directly to program support: session resources, mentor support, program materials, and scholarships for those who need financial assistance to participate.</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <h4>What are the five core areas?</h4>
+                        <p>The GyG syllabus covers Self-Awareness, Self-Development, Self-Mastery, Law of Deliberate Creation, and Law of Abundance. Each area focuses on different aspects of personal transformation.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="social-section">
+                <h3>Follow Our Journey</h3>
+                <p>Stay connected and see the impact you're helping create.</p>
+                <div class="social-links">
+                    <a href="#" class="social-link">Facebook</a>
+                    <a href="#" class="social-link">Instagram</a>
+                    <a href="#" class="social-link">Twitter</a>
+                    <a href="#" class="social-link">LinkedIn</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Grow Your Greatness. Empowering youth through mentorship and skill development.</p>
+            <p style="margin-top: 0.5rem; font-size: 0.9rem; opacity: 0.8;">
+                <a href="mailto:info@growyourgreatness.org">info@growyourgreatness.org</a> | 
+                <a href="tel:+15551234567">(555) 123-4567</a>
+            </p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
