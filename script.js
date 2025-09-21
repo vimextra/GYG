@@ -322,46 +322,37 @@ function handleStudentFormSubmission(e) {
     submitBtn.textContent = 'Submitting...';
     submitBtn.disabled = true;
     
-    // Create FormData and add hidden program value
+    // Create FormData and ensure program selection is included
     const formData = new FormData(form);
+    const selectedProgram = document.getElementById('selectedProgram').value;
     
-    // If using actual Formspree, submit the form
-    if (form.action.includes('formspree.io')) {
-        fetch(form.action, {
-            method: form.method,
-            body: formData,
-            headers: {
-                'Accept': 'application/json'
-            }
-        }).then(response => {
-            if (response.ok) {
-                form.style.display = 'none';
-                showMessage('success', 'Thank you for your application! We will review it within 3-5 business days and contact you soon.');
-            } else {
-                throw new Error('Form submission failed');
-            }
-        }).catch(error => {
-            console.error('Error submitting form:', error);
-            showMessage('error', 'There was an error submitting your application. Please try again or contact us directly.');
-        }).finally(() => {
-            submitBtn.textContent = originalText;
-            submitBtn.disabled = false;
-        });
-    } else {
-        // Fallback for demo/testing
-        setTimeout(() => {
-            try {
-                form.style.display = 'none';
-                showMessage('success', 'Thank you for your application! We will review it within 3-5 business days and contact you soon.');
-            } catch (error) {
-                console.error('Error submitting form:', error);
-                showMessage('error', 'There was an error submitting your application. Please try again or contact us directly.');
-            } finally {
-                submitBtn.textContent = originalText;
-                submitBtn.disabled = false;
-            }
-        }, 1500);
+    if (selectedProgram) {
+        formData.set('program', selectedProgram);
     }
+    
+    // Submit to Formspree
+    fetch(form.action, {
+        method: 'POST',
+        body: formData,
+        headers: {
+            'Accept': 'application/json'
+        }
+    }).then(response => {
+        if (response.ok) {
+            form.style.display = 'none';
+            showMessage('success', 'Thank you for your application! We have received it and will review within 3-5 business days. You will hear from us soon via email or phone.');
+        } else {
+            return response.json().then(data => {
+                throw new Error(data.error || 'Form submission failed');
+            });
+        }
+    }).catch(error => {
+        console.error('Error submitting form:', error);
+        showMessage('error', 'There was an error submitting your application. Please try again or contact us directly at applications@growyourgreatness.org');
+    }).finally(() => {
+        submitBtn.textContent = originalText;
+        submitBtn.disabled = false;
+    });
 }
 
 /**
@@ -385,58 +376,60 @@ function handleMentorFormSubmission(e) {
     submitBtn.textContent = 'Submitting...';
     submitBtn.disabled = true;
     
-    // Create FormData for submission
+    // Create FormData for Formspree submission
     const formData = new FormData(form);
+    const selectedProgram = document.getElementById('selectedMentorProgram').value;
     
-    // If using actual Formspree, submit the form
-    if (form.action && form.action.includes('formspree.io')) {
-        fetch(form.action, {
-            method: form.method,
-            body: formData,
-            headers: {
-                'Accept': 'application/json'
-            }
-        }).then(response => {
-            if (response.ok) {
-                const fullName = formData.get('fullName');
-                showMessage('success', `Thank you for your mentor application, ${fullName}! We have received your application and will review it within 5-7 business days. Our team will contact you to discuss the next steps.`);
-                
-                // Reset form
-                form.reset();
-                document.querySelectorAll('.program-option').forEach(option => {
-                    option.classList.remove('selected');
-                });
-            } else {
-                throw new Error('Form submission failed');
-            }
-        }).catch(error => {
-            console.error('Error submitting form:', error);
-            showMessage('error', 'There was an error submitting your application. Please try again or contact our team directly.');
-        }).finally(() => {
-            submitBtn.textContent = originalText;
-            submitBtn.disabled = false;
-        });
-    } else {
-        // Fallback for demo/testing
-        setTimeout(() => {
-            try {
-                const fullName = formData.get('fullName');
-                showMessage('success', `Thank you for your mentor application, ${fullName}! We have received your application and will review it within 5-7 business days. Our team will contact you to discuss the next steps.`);
-                
-                // Reset form
-                form.reset();
-                document.querySelectorAll('.program-option').forEach(option => {
-                    option.classList.remove('selected');
-                });
-            } catch (error) {
-                console.error('Error submitting form:', error);
-                showMessage('error', 'There was an error submitting your application. Please try again or contact our team directly.');
-            } finally {
-                submitBtn.textContent = originalText;
-                submitBtn.disabled = false;
-            }
-        }, 1500);
+    if (selectedProgram) {
+        formData.set('mentorProgram', selectedProgram);
     }
+    
+    // Handle additional programs checkboxes
+    const additionalPrograms = [];
+    const checkboxes = form.querySelectorAll('input[name="additionalPrograms"]:checked');
+    checkboxes.forEach(checkbox => {
+        additionalPrograms.push(checkbox.value);
+    });
+    if (additionalPrograms.length > 0) {
+        formData.set('additionalPrograms', additionalPrograms.join(', '));
+    }
+    
+    // Submit to Formspree
+    fetch(form.action, {
+        method: 'POST',
+        body: formData,
+        headers: {
+            'Accept': 'application/json'
+        }
+    }).then(response => {
+        if (response.ok) {
+            const fullName = formData.get('fullName');
+            showMessage('success', `Thank you for your mentor application, ${fullName}! We have received your application and will review it within 5-7 business days. Our team will contact you to discuss the next steps.`);
+            
+            // Reset form
+            form.reset();
+            document.querySelectorAll('.program-option').forEach(option => {
+                option.classList.remove('selected');
+            });
+            
+            // Reset new program fields
+            const newProgramSection = document.getElementById('newProgramSection');
+            const newProgramDescription = document.getElementById('newProgramDescription');
+            if (newProgramSection) newProgramSection.style.display = 'none';
+            if (newProgramDescription) newProgramDescription.style.display = 'none';
+            
+        } else {
+            return response.json().then(data => {
+                throw new Error(data.error || 'Form submission failed');
+            });
+        }
+    }).catch(error => {
+        console.error('Error submitting form:', error);
+        showMessage('error', 'There was an error submitting your application. Please try again or contact our team directly at vimextra12@gmail.com');
+    }).finally(() => {
+        submitBtn.textContent = originalText;
+        submitBtn.disabled = false;
+    });
 }
 
 /**
@@ -459,43 +452,29 @@ function handleContactFormSubmission(e) {
     // Create FormData for submission
     const formData = new FormData(form);
     
-    // If using actual Formspree, submit the form
-    if (form.action && form.action.includes('formspree.io')) {
-        fetch(form.action, {
-            method: form.method,
-            body: formData,
-            headers: {
-                'Accept': 'application/json'
-            }
-        }).then(response => {
-            if (response.ok) {
-                showMessage('success', 'Thank you for your message! We will get back to you within 24 hours.');
-                form.reset();
-            } else {
-                throw new Error('Form submission failed');
-            }
-        }).catch(error => {
-            console.error('Error submitting form:', error);
-            showMessage('error', 'There was an error sending your message. Please try again.');
-        }).finally(() => {
-            submitBtn.textContent = originalText;
-            submitBtn.disabled = false;
-        });
-    } else {
-        // Fallback for demo/testing
-        setTimeout(() => {
-            try {
-                showMessage('success', 'Thank you for your message! We will get back to you within 24 hours.');
-                form.reset();
-            } catch (error) {
-                console.error('Error submitting form:', error);
-                showMessage('error', 'There was an error sending your message. Please try again.');
-            } finally {
-                submitBtn.textContent = originalText;
-                submitBtn.disabled = false;
-            }
-        }, 1000);
-    }
+    // Submit to Formspree
+    fetch(form.action, {
+        method: 'POST',
+        body: formData,
+        headers: {
+            'Accept': 'application/json'
+        }
+    }).then(response => {
+        if (response.ok) {
+            showMessage('success', 'Thank you for your message! We will get back to you within 24 hours.');
+            form.reset();
+        } else {
+            return response.json().then(data => {
+                throw new Error(data.error || 'Form submission failed');
+            });
+        }
+    }).catch(error => {
+        console.error('Error submitting form:', error);
+        showMessage('error', 'There was an error sending your message. Please try again or contact us directly.');
+    }).finally(() => {
+        submitBtn.textContent = originalText;
+        submitBtn.disabled = false;
+    });
 }
 
 // ============================================================================
