@@ -1474,6 +1474,7 @@ main {
 
 .special-features-grid {
     display: grid;
+	background-color: #D3D3D3;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 2rem;
     max-width: 1000px;
@@ -1530,7 +1531,7 @@ main {
 }
 
 .contact-info {
-    background: #f8f9fa;
+    background: #D3D3D3;
     padding: 2rem;
     border-radius: 10px;
 }
@@ -1616,7 +1617,7 @@ main {
 }
 
 .faq-section {
-    background: #f8f9fa;
+    background: #D3D3D3;
     padding: 3rem 2rem;
     border-radius: 15px;
     margin: 3rem 0;
