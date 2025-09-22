@@ -660,12 +660,165 @@ function handleNewsletterFormSubmission(e) {
 }
 
 // ============================================================================
-// INITIALIZATION - UPDATED
+// GALLERY AND VIDEO FUNCTIONALITY
 // ============================================================================
 
 /**
- * Initializes all website functionality when DOM is loaded
+ * Handles video play button clicks
+ * @param {string} videoId - The video identifier
  */
+function playVideo(videoId) {
+    // In a real implementation, this would open a video modal or redirect to video
+    // For now, we'll show an alert with demo information
+    const videoData = {
+        'intro-video': {
+            title: 'Welcome to Grow Your Greatness',
+            description: 'An introduction to our philosophy of experience-based learning.',
+            url: 'https://www.youtube.com/watch?v=demo-intro'
+        },
+        'success-story': {
+            title: "Maria's Journey to Self-Mastery",
+            description: 'A powerful story of transformation through mentorship.',
+            url: 'https://www.youtube.com/watch?v=demo-success'
+        },
+        'workshop-highlights': {
+            title: 'Workshop Highlights 2024',
+            description: 'Best moments from our community workshops this year.',
+            url: 'https://www.youtube.com/watch?v=demo-workshop'
+        },
+        'mentor-testimonial': {
+            title: 'Why I Became a Mentor',
+            description: 'A veteran mentor shares his inspiration and journey.',
+            url: 'https://www.youtube.com/watch?v=demo-mentor'
+        }
+    };
+    
+    const video = videoData[videoId];
+    if (video) {
+        // In a real implementation, you would:
+        // 1. Open a video modal
+        // 2. Embed the actual video player
+        // 3. Track video analytics
+        
+        alert(`Now playing: ${video.title}\n\n${video.description}\n\nIn a real implementation, this would open the video player.`);
+        
+        // Example of how you might implement actual video playing:
+        // openVideoModal(video.url, video.title);
+    }
+}
+
+/**
+ * Opens a video in a modal (placeholder implementation)
+ * @param {string} videoUrl - The video URL
+ * @param {string} title - The video title
+ */
+function openVideoModal(videoUrl, title) {
+    // Create and show video modal
+    const modal = document.createElement('div');
+    modal.className = 'video-modal';
+    modal.innerHTML = `
+        <div class="modal-backdrop" onclick="closeVideoModal()"></div>
+        <div class="video-modal-content">
+            <button class="modal-close" onclick="closeVideoModal()">&times;</button>
+            <h3>${title}</h3>
+            <div class="video-container">
+                <iframe src="${videoUrl}" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </div>
+    `;
+    
+    document.body.appendChild(modal);
+    document.body.style.overflow = 'hidden';
+}
+
+/**
+ * Closes the video modal
+ */
+function closeVideoModal() {
+    const modal = document.querySelector('.video-modal');
+    if (modal) {
+        modal.remove();
+        document.body.style.overflow = 'auto';
+    }
+}
+
+/**
+ * Handles event registration button clicks
+ * @param {string} eventTitle - The event title
+ */
+function registerForEvent(eventTitle) {
+    // In a real implementation, this would open a registration form or redirect
+    alert(`Registration for "${eventTitle}" is not yet available. Please contact us for more information.`);
+}
+
+/**
+ * Initializes gallery lightbox functionality for home page
+ */
+function initHomeGalleryLightbox() {
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    
+    galleryItems.forEach((item, index) => {
+        item.addEventListener('click', function() {
+            const img = this.querySelector('img');
+            const title = this.querySelector('h4').textContent;
+            const description = this.querySelector('p').textContent;
+            
+            openImageLightbox(img.src, title, description, index);
+        });
+    });
+}
+
+/**
+ * Opens an image in a lightbox
+ * @param {string} imageSrc - The image source
+ * @param {string} title - The image title
+ * @param {string} description - The image description
+ * @param {number} index - The image index
+ */
+function openImageLightbox(imageSrc, title, description, index) {
+    // Create lightbox modal
+    const lightbox = document.createElement('div');
+    lightbox.className = 'image-lightbox';
+    lightbox.innerHTML = `
+        <div class="lightbox-backdrop" onclick="closeLightbox()"></div>
+        <div class="lightbox-content">
+            <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+            <img src="${imageSrc}" alt="${title}">
+            <div class="lightbox-info">
+                <h3>${title}</h3>
+                <p>${description}</p>
+            </div>
+        </div>
+    `;
+    
+    document.body.appendChild(lightbox);
+    document.body.style.overflow = 'hidden';
+    
+    // Add ESC key listener
+    document.addEventListener('keydown', handleLightboxKeydown);
+}
+
+/**
+ * Closes the image lightbox
+ */
+function closeLightbox() {
+    const lightbox = document.querySelector('.image-lightbox');
+    if (lightbox) {
+        lightbox.remove();
+        document.body.style.overflow = 'auto';
+        document.removeEventListener('keydown', handleLightboxKeydown);
+    }
+}
+
+/**
+ * Handles keyboard navigation in lightbox
+ * @param {KeyboardEvent} e - The keyboard event
+ */
+function handleLightboxKeydown(e) {
+    if (e.key === 'Escape') {
+        closeLightbox();
+    }
+}
 function initWebsite() {
     // Core functionality
     initDropdownHandlers();
