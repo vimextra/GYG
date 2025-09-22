@@ -46,6 +46,16 @@
             font-size: 1.5rem;
             font-weight: bold;
         }
+	    button {
+	        background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
 
         .nav-links {
             display: flex;
@@ -351,7 +361,7 @@
 <body>
     <header>
         <nav class="container">
-            <div class="logo">Grow Your Greatness</div>
+           <button href="index.html">Growing Your Greatness</button>
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="programs.html">Programs</a></li>
@@ -393,13 +403,15 @@
                 <h3 style="margin-bottom: 1rem; color: #721c24;">⚠ Submission Error</h3>
                 <p>There was an error submitting your application. Please try again or contact us directly at <a href="mailto:applications@growyourgreatness.org" style="color: #721c24;">applications@growyourgreatness.org</a></p>
             </div>
-<!-- https://your-domain.com/thank-you.html-->
-            <div class="form-container">
-                <form id="registrationForm" action="https://formspree.io/f/xldwavlw" method="POST">
-                    <!-- Formspree Configuration -->
-                    <input type="hidden" name="_subject" value="New Student Application - Grow Your Greatness">
-                    <input type="hidden" name="_next" value=" ">
-                    <input type="hidden" name="_captcha" value="false">
+
+        <div class="container">
+            <div class="contact-content">
+                <div class="form-container">
+                    <form id="contactForm" action="https://formspree.io/f/xldwavlw" method="POST">
+                        <!-- Formspree Configuration -->
+                        <input type="hidden" name="_subject" value="Contact Form Submission - Grow Your Greatness">
+                        <input type="hidden" name="_next" value="https://your-domain.com/contact-thank-you.html">
+                        <input type="hidden" name="_captcha" value="false">
 
                     <div style="background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 1.5rem; border-radius: 10px; margin-bottom: 2rem; text-align: center;">
                         <h3 style="margin-bottom: 0.5rem;">Student Application Form</h3>
@@ -612,6 +624,7 @@
                 </form>
             </div>
         </div>
+	</div>
     </main>
 
     <footer>
@@ -746,5 +759,6 @@
             initFormValidation();
         });
     </script>
+    <script src="script.js"></script>
 </body>
 </html>
